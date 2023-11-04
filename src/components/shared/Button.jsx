@@ -5,10 +5,11 @@ export const Button = ({
   disabled = false,
   size = "md",
   variant = "default",
+  width = "lg",
   ...rest
 }) => {
   const baseStyles =
-    "w-full my-3 py-2 font-bold text-center rounded-full disabled:opacity-50";
+    " my-3 py-2 font-bold text-center rounded-full disabled:opacity-50";
 
   const sizeStyles = {
     sm: "text-sm",
@@ -16,9 +17,14 @@ export const Button = ({
     lg: "text-lg",
   };
 
+  const widthStyles = {
+    sm: "px-8",
+    lg: "w-full",
+  };
+
   const variantStyles = {
     primary:
-      "bg-twitter-default py-4 text-neutral-50 font-bold text-center hover:bg-twitter-hover ",
+      "bg-twitter-default py-2 text-neutral-50 font-bold text-center hover:bg-twitter-hover ",
     default:
       "shadow-button  rounded-full bg-neutral-50 text-neutral-1000 hover:bg-neutral-200",
     outline:
@@ -29,7 +35,7 @@ export const Button = ({
     ? "cursor-not-allowed opacity-50"
     : "cursor-pointer";
 
-  const classes = `${baseStyles} ${sizeStyles[size]} ${variantStyles[variant]} ${disabledStyles}`;
+  const classes = `${baseStyles} ${sizeStyles[size]} ${widthStyles[width]} ${variantStyles[variant]} ${disabledStyles}`;
   return (
     <button className={classes} disabled={disabled} {...rest}>
       {children}
@@ -40,7 +46,8 @@ export const Button = ({
 Button.propTypes = {
   disabled: PropTypes.bool,
   size: PropTypes.oneOf(["sm", "md", "lg"]).isRequired,
-  variant: PropTypes.oneOf(["default", "outline"]).isRequired,
+  variant: PropTypes.oneOf(["default", "outline", "primary"]).isRequired,
   text: PropTypes.string,
   children: PropTypes.node,
+  width: PropTypes.string,
 };

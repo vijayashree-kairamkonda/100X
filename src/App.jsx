@@ -14,7 +14,7 @@ function TwitterApp() {
 }
 function App() {
   return (
-    <div className="h-screen w-screen bg-neutral-1000 font-inter text-neutral-50">
+    <div className="h-screen overflow-auto w-screen bg-neutral-1000 font-inter text-neutral-50">
       <CreateAccountProvider>
         <TwitterApp />
       </CreateAccountProvider>
