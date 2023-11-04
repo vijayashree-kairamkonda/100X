@@ -7,7 +7,8 @@ export const Button = ({
   variant = "default",
   ...rest
 }) => {
-  const baseStyles = "w-full my-3 py-2 font-bold text-center rounded-full";
+  const baseStyles =
+    "w-full my-3 py-2 font-bold text-center rounded-full disabled:opacity-50";
 
   const sizeStyles = {
     sm: "text-sm",
@@ -16,6 +17,8 @@ export const Button = ({
   };
 
   const variantStyles = {
+    primary:
+      "bg-twitter-default py-4 text-neutral-50 font-bold text-center hover:bg-twitter-hover ",
     default:
       "shadow-button  rounded-full bg-neutral-50 text-neutral-1000 hover:bg-neutral-200",
     outline:

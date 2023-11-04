@@ -1,12 +1,19 @@
-import { Button } from "../Button";
+import { useContext } from "react";
+import { Button } from "../shared/Button";
+import { CreateAccountContext } from "../../context/createAccount/CreateAccountContext";
 
 const LoginMain = () => {
+  const { setCreateAccount } = useContext(CreateAccountContext);
   return (
     <section className="flex flex-col justify-start space-y-2 lg:space-y-5">
       <h3 className="text-3xl md:text-5xl font-bold">Happening now</h3>
       <h4 className="text-lg md:text-2xl font-bold">Join today.</h4>
       <div>
-        <Button variant="default" size="md">
+        <Button
+          variant="default"
+          size="md"
+          onClick={() => setCreateAccount(true)}
+        >
           Create Account
         </Button>
       </div>
