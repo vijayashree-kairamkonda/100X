@@ -29,6 +29,8 @@ export const Button = ({
       "shadow-button  rounded-full bg-neutral-50 text-neutral-1000 hover:bg-neutral-200",
     outline:
       "rouned-5xl border text-twitter-default border-solid border-button-stroke shadow-3xl",
+    secondary:
+      "px-8 py-2 border-2 border-button-stroke text-neutral-50 font-bold text-center rounded-full",
   };
 
   const disabledStyles = disabled
@@ -46,7 +48,8 @@ export const Button = ({
 Button.propTypes = {
   disabled: PropTypes.bool,
   size: PropTypes.oneOf(["sm", "md", "lg"]).isRequired,
-  variant: PropTypes.oneOf(["default", "outline", "primary"]).isRequired,
+  variant: PropTypes.oneOf(["default", "outline", "primary", "secondary"])
+    .isRequired,
   text: PropTypes.string,
   children: PropTypes.node,
   width: PropTypes.string,

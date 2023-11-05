@@ -1,10 +1,10 @@
 import { Button } from "./Button";
 import crossIcon from "../../assets/cross.svg";
 import { Avatar } from "./Avatar";
-import avatarIcon from "../../assets/avatar.png";
 import { TextInput } from "../shared/TextInput";
+import PropTypes from "prop-types";
 
-const CreatePost = () => {
+export const CreatePost = ({ user }) => {
   return (
     <div className="h-screen flex flex-col justify-between">
       <div>
@@ -16,7 +16,7 @@ const CreatePost = () => {
         </div>
         <div className="flex items-center px-2">
           <div>
-            <Avatar url={avatarIcon} />
+            <Avatar url={user?.userImage} />
           </div>
           <div>
             <TextInput placeholder="What's happening?" base="borderNone" />
@@ -30,4 +30,11 @@ const CreatePost = () => {
   );
 };
 
-export default CreatePost;
+CreatePost.propTypes = {
+  user: PropTypes.objectOf({
+    userid: PropTypes.number,
+    userName: PropTypes.string,
+    userFullName: PropTypes.string,
+    userImage: PropTypes.url,
+  }),
+};

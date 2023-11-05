@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Tabs = () => {
+export const Tabs = () => {
   const [active, setActive] = useState({
     forYou: false,
     following: false,
@@ -41,5 +41,3 @@ const Tabs = () => {
     </div>
   );
 };
-
-export default Tabs;
