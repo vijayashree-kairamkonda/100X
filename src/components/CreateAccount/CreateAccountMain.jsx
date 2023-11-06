@@ -13,6 +13,7 @@ export const CreateAccountMain = () => {
       {steps === "2" ? (
         <>
           <div className="font-bold text-base">Create your account</div>
+          {/* Need to modify input */}
           <TextInput
             value={userDetails?.name}
             readOnly
