@@ -28,3 +28,25 @@ export const years = [
   { value: "1999", id: 10 },
   { value: "2000", id: 11 },
 ];
+
+export const posts = [
+  {
+    meta: {
+      comments: 11,
+      reposts: 20,
+      likes: 10,
+      views: 111,
+    },
+    post: {
+      text: "Hey! This is my first tweet.",
+      postedBy: {
+        userName: "@vijayshree",
+        userFullName: "vijayashree k",
+      },
+    },
+  },
+];
+
+export const HOME = "home";
+export const PROFILE = "profile";
+export const CREATE_ACCOUNT = "createAccount";

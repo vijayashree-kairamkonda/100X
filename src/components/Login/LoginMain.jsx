@@ -1,9 +1,10 @@
 import { useContext } from "react";
 import { Button } from "../shared/Button";
 import { CreateAccountContext } from "../../context/createAccount/CreateAccountContext";
+import { CREATE_ACCOUNT } from "../../constants/Constants";
 
 const LoginMain = () => {
-  const { setCreateAccount } = useContext(CreateAccountContext);
+  const { setPages } = useContext(CreateAccountContext);
   return (
     <section className="flex flex-col justify-start space-y-2 lg:space-y-5">
       <h3 className="text-3xl md:text-5xl font-bold">Happening now</h3>
@@ -12,7 +13,7 @@ const LoginMain = () => {
         <Button
           variant="default"
           size="md"
-          onClick={() => setCreateAccount(true)}
+          onClick={() => setPages(CREATE_ACCOUNT)}
         >
           Create Account
         </Button>

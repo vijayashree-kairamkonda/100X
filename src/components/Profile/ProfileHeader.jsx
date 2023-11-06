@@ -4,7 +4,7 @@ import { Avatar } from "../shared/Avatar";
 import { Button } from "../shared/Button";
 import PropTypes from "prop-types";
 
-const ProfileHeader = ({ user }) => {
+export const ProfileHeader = ({ user }) => {
   return (
     <div>
       <header className="relative">
@@ -69,4 +69,3 @@ ProfileHeader.propTypes = {
   }),
 };
 
-export default ProfileHeader;

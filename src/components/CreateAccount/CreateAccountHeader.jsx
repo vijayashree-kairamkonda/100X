@@ -3,7 +3,7 @@ import crossIcon from "../../assets/cross.svg";
 import { CreateAccountContext } from "../../context/createAccount/CreateAccountContext";
 
 export const CreateAccountHeader = () => {
-  const { steps, setSteps } = useContext(CreateAccountContext);
+  const { steps, setSteps, setPages } = useContext(CreateAccountContext);
 
   const handleNavigateSteps = () => {
     steps === "4"
@@ -12,7 +12,7 @@ export const CreateAccountHeader = () => {
       ? setSteps("2")
       : steps === "2"
       ? setSteps("1")
-      : null;
+      : setPages("");
   };
   return (
     <div className="flex space-x-6">

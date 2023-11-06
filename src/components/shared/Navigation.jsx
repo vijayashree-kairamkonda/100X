@@ -2,30 +2,28 @@ import homeOutlinedIcon from "../../assets/home-outline.svg";
 import profileOutlinedIcon from "../../assets/profile.svg";
 import homeFilledIcon from "../../assets/home.svg";
 import profileFilledIcon from "../../assets/profile-filled.svg";
-import { useState } from "react";
+import { useContext } from "react";
 import PropTypes from "prop-types";
+import { CreateAccountContext } from "../../context/createAccount/CreateAccountContext";
+import { HOME, PROFILE } from "../../constants/Constants";
 
-export const Navigation = ({ items }) => {
-  const [active, setActive] = useState({
-    home: false,
-    profile: false,
-  });
+export const Navigation = ({ items = {} }) => {
+  const { setPages, pages } = useContext(CreateAccountContext);
 
   console.log(items);
-
   const handleHome = () => {
-    setActive({ home: !active.home });
+    setPages(HOME);
   };
 
   const handleProfile = () => {
-    setActive({ profile: !active.profile });
+    setPages(PROFILE);
   };
   return (
     <div>
       <footer className="flex items-center w-full justify-center bg-black py-4 mt-2 fixed bottom-0 space-x-16 border-t-2 border-neutral-700">
         <div className="flex space-x-4">
           <span>
-            {active.home ? (
+            {pages === "home" ? (
               <img src={homeFilledIcon} onClick={handleHome} />
             ) : (
               <img src={homeOutlinedIcon} onClick={handleHome} />
@@ -34,7 +32,7 @@ export const Navigation = ({ items }) => {
         </div>
         <div className="flex space-x-4">
           <span>
-            {active.profile ? (
+            {pages === "profile" ? (
               <img src={profileFilledIcon} onClick={handleProfile} />
             ) : (
               <img src={profileOutlinedIcon} onClick={handleProfile} />

@@ -5,7 +5,8 @@ import { TextInput } from "../shared/TextInput";
 import { CreateAccountContext } from "../../context/createAccount/CreateAccountContext";
 
 export const CreateAccountMain = () => {
-  const { steps } = useContext(CreateAccountContext);
+  const { steps, userDetails, setUserDetails } =
+    useContext(CreateAccountContext);
 
   return (
     <>
@@ -13,18 +14,22 @@ export const CreateAccountMain = () => {
         <>
           <div className="font-bold text-base">Create your account</div>
           <TextInput
+            value={userDetails?.name}
             readOnly
             name="Name"
             placeholder="Name"
-            value={"Vijayashree"}
           />
           <TextInput
             readOnly
             name="Email"
             placeholder="Email"
-            value={"vijayashree369@gmail.com"}
+            value={userDetails?.email}
           />
-          <TextInput readOnly name="Date of birth" value="09/04/2000" />
+          <TextInput
+            readOnly
+            name="Date of birth"
+            value={` ${userDetails?.birthDay} / ${userDetails?.birthMonth} / ${userDetails?.birthYear}`}
+          />
         </>
       ) : steps === "3" ? (
         <>
@@ -60,10 +65,12 @@ export const CreateAccountMain = () => {
               Make sure it&apos;s 8 characters or more
             </div>
             <TextInput
-              onChange={() => {}}
+              onChange={(e) => {
+                setUserDetails({ ...userDetails, password: e.target.value });
+              }}
               name="Password"
               placeholder="Password"
-              value=""
+              value={userDetails?.password}
             />
           </div>
         </>
@@ -71,8 +78,22 @@ export const CreateAccountMain = () => {
         <>
           <div className="font-bold text-base">Create your account</div>
           <div className="flex flex-col space-y-4">
-            <TextInput name="Name" placeholder="Name" onChange={() => {}} />
-            <TextInput name="Email" placeholder="Email" onChange={() => {}} />
+            <TextInput
+              name="Name"
+              value={userDetails?.name}
+              placeholder="Name"
+              onChange={(e) => {
+                setUserDetails({ ...userDetails, name: e.target.value });
+              }}
+            />
+            <TextInput
+              name="Email"
+              value={userDetails?.email}
+              placeholder="Email"
+              onChange={(e) => {
+                setUserDetails({ ...userDetails, email: e.target.value });
+              }}
+            />
           </div>
 
           <div className="flex flex-col space-y-2">
@@ -85,21 +106,33 @@ export const CreateAccountMain = () => {
 
           <div className="flex space-x-2 py-2">
             <SelectInput
+              value={userDetails?.birthMonth}
               name="Month"
               defaultVal={monthOptions?.[0]?.value}
               options={monthOptions}
+              onChange={(e) => {
+                setUserDetails({ ...userDetails, birthMonth: e.target.value });
+              }}
             />
 
             <SelectInput
+              value={userDetails?.birthDay}
               name="Day"
               defaultVal={days31?.[0]?.value}
               options={days31}
+              onChange={(e) => {
+                setUserDetails({ ...userDetails, birthDay: e.target.value });
+              }}
             />
 
             <SelectInput
+              value={userDetails?.birthYear}
               options={years}
               name="Year"
               defaultVal={years?.[0]?.value}
+              onChange={(e) => {
+                setUserDetails({ ...userDetails, birthYear: e.target.value });
+              }}
             />
           </div>
         </>

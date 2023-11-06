@@ -2,7 +2,7 @@ import { useState } from "react";
 
 export const Tabs = () => {
   const [active, setActive] = useState({
-    forYou: false,
+    forYou: true,
     following: false,
   });
   return (
@@ -13,7 +13,7 @@ export const Tabs = () => {
             <div
               className="flex items-end py-4 text-neutral-50 font-medium text-16"
               onClick={() => {
-                setActive({ forYou: true });
+                setActive({ forYou: !active.forYou });
               }}
             >
               For you
@@ -26,7 +26,7 @@ export const Tabs = () => {
             <div
               className="flex items-end py-4 text-neutral-400 font-medium text-16"
               onClick={() => {
-                setActive({ following: true });
+                setActive({ following: !active.following });
               }}
             >
               Following

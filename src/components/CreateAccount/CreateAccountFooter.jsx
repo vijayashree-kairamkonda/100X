@@ -1,9 +1,10 @@
 import { useContext } from "react";
 import { Button } from "../shared/Button";
 import { CreateAccountContext } from "../../context/createAccount/CreateAccountContext";
+import { HOME } from "../../constants/Constants";
 
 export const CreateAccountFooter = () => {
-  const { steps, setSteps } = useContext(CreateAccountContext);
+  const { steps, setSteps, setPages } = useContext(CreateAccountContext);
   return (
     <div>
       {steps === "2" ? (
@@ -14,7 +15,7 @@ export const CreateAccountFooter = () => {
         <Button
           variant="default"
           size="md"
-          onClick={() => (steps === "3" ? setSteps("4") : setSteps("0"))}
+          onClick={() => (steps === "3" ? setSteps("4") : setPages(HOME))}
         >
           Next
         </Button>

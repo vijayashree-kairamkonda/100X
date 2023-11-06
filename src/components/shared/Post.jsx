@@ -43,7 +43,12 @@ export const Post = ({ meta = {}, post = {} }) => {
 };
 
 Post.propTypes = {
-  meta: PropTypes.objectOf(PropTypes.number),
+  meta: PropTypes.objectOf({
+    comments: PropTypes.number,
+    reposts: PropTypes.number,
+    views: PropTypes.number,
+    likes: PropTypes.number,
+  }),
   post: PropTypes.objectOf({
     id: PropTypes.number,
     text: PropTypes.string,
