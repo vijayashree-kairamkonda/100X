@@ -1,12 +1,13 @@
 import PropTypes from "prop-types";
 
 export const TextInput = ({
-  name,
-  onChange,
+  name = "",
+  onChange = () => {},
   value,
-  placeholder,
-  readOnly,
+  placeholder = "",
+  readOnly = false,
   base = "normal",
+  textArea = false,
 }) => {
   const styles = {
     normal:
@@ -23,14 +24,25 @@ export const TextInput = ({
           <div className="px-2">{name}</div>
         </legend>
       )}
-      <input
-        value={value}
-        onChange={onChange}
-        readOnly={readOnly}
-        type="text"
-        placeholder={placeholder}
-        className="w-full pb-1 bg-transparent text-neutral-50 placeholder:text-neutral-500 focus:outline-none"
-      />
+      {textArea ? (
+        <textarea
+          value={value}
+          onChange={onChange}
+          readOnly={readOnly}
+          type="text"
+          placeholder={placeholder}
+          className="w-full pb-1 bg-transparent text-neutral-50 placeholder:text-neutral-500 focus:outline-none"
+        />
+      ) : (
+        <input
+          value={value}
+          onChange={onChange}
+          readOnly={readOnly}
+          type="text"
+          placeholder={placeholder}
+          className="w-full pb-1 bg-transparent text-neutral-50 placeholder:text-neutral-500 focus:outline-none"
+        />
+      )}
     </fieldset>
   );
 };
@@ -42,4 +54,5 @@ TextInput.propTypes = {
   value: PropTypes.any,
   readOnly: PropTypes.bool,
   base: PropTypes.any,
+  textArea: PropTypes.bool,
 };
