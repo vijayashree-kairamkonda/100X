@@ -8,13 +8,13 @@ import PropTypes from "prop-types";
 
 export const Post = ({ meta = {}, post = {} }) => {
   return (
-    <section className="text-neutral-50 flex flex-col gap-4 w-full border-b-2 border-neutral-700 py-4 px-3">
+    <section className="text-neutral-50 flex flex-col flex-wrap gap-4 w-full border-b-2 border-neutral-700 py-4 px-3">
       <Avatar
         url={post?.postedBy?.userImage}
         userName={post?.postedBy?.userFullName}
         userHandle={post?.postedBy?.userName}
       />
-      <div className=" flex flex-col space-y-6 pl-10">
+      <div className="flex flex-col flex-wrap space-y-6 pl-10">
         <div>{post?.text}</div>
         <div className="flex space-x-6 items-center ">
           <div className="flex gap-1 items-center">

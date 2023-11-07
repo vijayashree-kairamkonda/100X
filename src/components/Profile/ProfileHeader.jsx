@@ -3,8 +3,11 @@ import calenderIcon from "../../assets/calendar.svg";
 import { Avatar } from "../shared/Avatar";
 import { Button } from "../shared/Button";
 import PropTypes from "prop-types";
+import { useContext } from "react";
+import { CreateAccountContext } from "../../context/createAccount/CreateAccountContext";
 
 export const ProfileHeader = ({ user }) => {
+  const { setPages } = useContext(CreateAccountContext);
   return (
     <div>
       <header className="relative">
@@ -13,7 +16,12 @@ export const ProfileHeader = ({ user }) => {
       </header>
       <div>
         <div className="flex justify-end m-2">
-          <Button variant="secondary" size="md" width="sm">
+          <Button
+            variant="secondary"
+            size="md"
+            width="sm"
+            onClick={() => setPages("edit-profile")}
+          >
             Edit profile
           </Button>
         </div>
@@ -68,4 +76,3 @@ ProfileHeader.propTypes = {
     joinedAt: PropTypes.string,
   }),
 };
-

@@ -1,8 +1,9 @@
 import { useContext } from "react";
 import { days31, monthOptions, years } from "../../constants/Constants";
 import { SelectInput } from "../shared/SelectInput";
-import { TextInput } from "../shared/TextInput";
 import { CreateAccountContext } from "../../context/createAccount/CreateAccountContext";
+import { Fieldset } from "../shared/Fieldset";
+import { Input } from "../shared/Input";
 
 export const CreateAccountMain = () => {
   const { steps, userDetails, setUserDetails } =
@@ -13,24 +14,34 @@ export const CreateAccountMain = () => {
       {steps === "2" ? (
         <>
           <div className="font-bold text-base">Create your account</div>
-          {/* Need to modify input */}
-          <TextInput
-            value={userDetails?.name}
-            readOnly
-            name="Name"
-            placeholder="Name"
-          />
-          <TextInput
-            readOnly
-            name="Email"
-            placeholder="Email"
-            value={userDetails?.email}
-          />
-          <TextInput
-            readOnly
-            name="Date of birth"
-            value={` ${userDetails?.birthDay} / ${userDetails?.birthMonth} / ${userDetails?.birthYear}`}
-          />
+          <Fieldset name="Name" style="selected" legend="selected">
+            <Input
+              readOnly
+              value={userDetails?.name}
+              placeholder="Name"
+              type="text"
+              verified
+            />
+          </Fieldset>
+          <Fieldset name="Email" style="selected" legend="selected">
+            <Input
+              readOnly
+              value={userDetails?.email}
+              placeholder="Email"
+              type="email"
+              verified
+            />
+          </Fieldset>
+
+          <Fieldset name="Name" style="selected" legend="selected">
+            <Input
+              readOnly
+              value={` ${userDetails?.birthDay} / ${userDetails?.birthMonth} / ${userDetails?.birthYear}`}
+              placeholder="Date of birth"
+              type="text"
+              verified
+            />
+          </Fieldset>
         </>
       ) : steps === "3" ? (
         <>
@@ -39,18 +50,14 @@ export const CreateAccountMain = () => {
             Enter it below to verify vijayashree@gmail.com
           </div>
           <div className=" flex flex-col">
-            <fieldset className="w-full group rounded border border-solid border-neutral-500 px-3 py-3 focus-within:border-twitter-default">
-              <legend className="text-xs text-neutral-500 group-focus-within:text-twitter-default">
-                <div className="px-2">Verification code</div>
-              </legend>
-              <div className="flex justify-end items-center relative">
-                <input
-                  type="text"
-                  placeholder="Verification code"
-                  className="w-full pb-1 bg-transparent text-neutral-50 placeholder:text-neutral-500 focus:outline-none"
-                />
-              </div>
-            </fieldset>
+            <Fieldset name="Verification code" style="default" legend="default">
+              <Input
+                value={""}
+                placeholder="Verification code"
+                onChange={() => {}}
+                type="number"
+              />
+            </Fieldset>
             <div className="text-twitter-default font-normal flex justify-end">
               Didn&apos;t receive a code?
             </div>
@@ -65,36 +72,43 @@ export const CreateAccountMain = () => {
             <div className="text-neutral-500 font-normal">
               Make sure it&apos;s 8 characters or more
             </div>
-            <TextInput
-              onChange={(e) => {
-                setUserDetails({ ...userDetails, password: e.target.value });
-              }}
-              name="Password"
-              placeholder="Password"
-              value={userDetails?.password}
-            />
+            <Fieldset name="Password" style="default" legend="default">
+              <Input
+                value={userDetails?.password}
+                placeholder="Password"
+                onChange={(e) => {
+                  setUserDetails({ ...userDetails, password: e.target.value });
+                }}
+                type="password"
+              />
+            </Fieldset>
           </div>
         </>
       ) : (
         <>
           <div className="font-bold text-base">Create your account</div>
           <div className="flex flex-col space-y-4">
-            <TextInput
-              name="Name"
-              value={userDetails?.name}
-              placeholder="Name"
-              onChange={(e) => {
-                setUserDetails({ ...userDetails, name: e.target.value });
-              }}
-            />
-            <TextInput
-              name="Email"
-              value={userDetails?.email}
-              placeholder="Email"
-              onChange={(e) => {
-                setUserDetails({ ...userDetails, email: e.target.value });
-              }}
-            />
+            <Fieldset name="Name" style="default" legend="default">
+              <Input
+                value={userDetails?.name}
+                placeholder="Name"
+                onChange={(e) => {
+                  setUserDetails({ ...userDetails, name: e.target.value });
+                }}
+                type="text"
+              />
+            </Fieldset>
+
+            <Fieldset name="Email" style="default" legend="default">
+              <Input
+                value={userDetails?.email}
+                placeholder="Email"
+                onChange={(e) => {
+                  setUserDetails({ ...userDetails, email: e.target.value });
+                }}
+                type="email"
+              />
+            </Fieldset>
           </div>
 
           <div className="flex flex-col space-y-2">

@@ -2,17 +2,24 @@ import arrowLeft from "../../assets/arrowleft.svg";
 import photoOutline from "../../assets/photo-outline.svg";
 import x from "../../assets/x.svg";
 import { Avatar } from "../shared/Avatar";
-import { TextInput } from "../shared/TextInput";
 import { Button } from "../shared/Button";
 import PropTypes from "prop-types";
+import { Fieldset } from "../shared/Fieldset";
+import { Input } from "../shared/Input";
+import { PROFILE } from "../../constants/Constants";
+import { useContext } from "react";
+import { CreateAccountContext } from "../../context/createAccount/CreateAccountContext";
 
 export const EditProfile = ({ user }) => {
+  const { setPages } = useContext(CreateAccountContext);
   return (
     <div>
       <div className="px-2">
         <div className="flex justify-between items-center">
           <span className="flex space-x-2">
-            <img src={arrowLeft} />
+            <span onClick={() => setPages(PROFILE)}>
+              <img src={arrowLeft} />
+            </span>
             <span>Edit profile</span>
           </span>
           <span>
@@ -43,33 +50,41 @@ export const EditProfile = ({ user }) => {
             </div>
           </div>
         </div>
-        
+
         <div className="flex flex-col my-8 space-y-4">
-          <TextInput
-            name="Name"
-            value=""
-            onChange={() => {}}
-            placeholder="Name"
-          />
-          <TextInput
-            name="Bio"
-            value=""
-            onChange={() => {}}
-            placeholder="Bio"
-            textArea
-          />
-          <TextInput
-            name="Location"
-            value=""
-            onChange={() => {}}
-            placeholder="Location"
-          />
-          <TextInput
-            name="Website"
-            value=""
-            onChange={() => {}}
-            placeholder="Website"
-          />
+          <Fieldset name="Name" style="default" legend="default">
+            <Input
+              value={""}
+              placeholder="Name"
+              onChange={() => {}}
+              type="text"
+            />
+          </Fieldset>
+          <Fieldset name="Bio" style="default" legend="default">
+            <Input
+              value={""}
+              placeholder="Bio"
+              onChange={() => {}}
+              type="text"
+              textArea
+            />
+          </Fieldset>
+          <Fieldset name="Location" style="default" legend="default">
+            <Input
+              value={""}
+              placeholder="Location"
+              onChange={() => {}}
+              type="text"
+            />
+          </Fieldset>
+          <Fieldset name="Website" style="default" legend="default">
+            <Input
+              value={""}
+              placeholder="Website"
+              onChange={() => {}}
+              type="text"
+            />
+          </Fieldset>
         </div>
       </div>
     </div>

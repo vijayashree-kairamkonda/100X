@@ -1,11 +1,12 @@
 import { Button } from "./Button";
 import crossIcon from "../../assets/cross.svg";
 import { Avatar } from "./Avatar";
-import { TextInput } from "../shared/TextInput";
 import PropTypes from "prop-types";
 import { useContext, useState } from "react";
 import { HomeFeedContext } from "../../context/homeFeed/HomeFeedContext";
 import { posts } from "../../constants/Constants";
+import { Fieldset } from "./Fieldset";
+import { Input } from "./Input";
 
 export const CreatePost = ({ user }) => {
   const { setOpenCreatePost } = useContext(HomeFeedContext);
@@ -49,13 +50,18 @@ export const CreatePost = ({ user }) => {
             <div>
               <Avatar url={user?.userImage} />
             </div>
-            <div>
-              <TextInput
-                value={postText}
-                onChange={(e) => setPostText(e.target.value)}
-                placeholder="What's happening?"
-                base="borderNone"
-              />
+            <div className="w-full h-full">
+              <Fieldset style="borderNone" legend="default">
+                <Input
+                  value={postText}
+                  placeholder="What's happening.."
+                  onChange={(e) => {
+                    setPostText(e.target.value);
+                  }}
+                  type="text"
+                  textArea
+                />
+              </Fieldset>
             </div>
           </div>
         </div>

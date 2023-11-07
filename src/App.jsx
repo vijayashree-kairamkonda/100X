@@ -7,6 +7,7 @@ import { HomeFeed } from "./pages/HomeFeed/HomeFeed";
 import { Profile } from "./pages/Profile/Profile";
 import { HomeFeedProvider } from "./context/homeFeed/HomeFeedProvider";
 import { CREATE_ACCOUNT, HOME, PROFILE } from "./constants/Constants";
+import { EditProfile } from "./components/Profile/EditProfile";
 
 function TwitterApp() {
   const { pages } = useContext(CreateAccountContext);
@@ -18,6 +19,8 @@ function TwitterApp() {
         <HomeFeed />
       ) : pages === PROFILE ? (
         <Profile />
+      ) : pages === "edit-profile" ? (
+        <EditProfile />
       ) : (
         <Login />
       )}
