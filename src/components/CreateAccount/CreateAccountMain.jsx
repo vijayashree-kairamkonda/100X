@@ -120,35 +120,51 @@ export const CreateAccountMain = () => {
           </div>
 
           <div className="flex space-x-2 py-2">
-            <SelectInput
-              value={userDetails?.birthMonth}
-              name="Month"
-              defaultVal={monthOptions?.[0]?.value}
-              options={monthOptions}
-              onChange={(e) => {
-                setUserDetails({ ...userDetails, birthMonth: e.target.value });
-              }}
-            />
-
-            <SelectInput
-              value={userDetails?.birthDay}
-              name="Day"
-              defaultVal={days31?.[0]?.value}
-              options={days31}
-              onChange={(e) => {
-                setUserDetails({ ...userDetails, birthDay: e.target.value });
-              }}
-            />
-
-            <SelectInput
-              value={userDetails?.birthYear}
-              options={years}
-              name="Year"
-              defaultVal={years?.[0]?.value}
-              onChange={(e) => {
-                setUserDetails({ ...userDetails, birthYear: e.target.value });
-              }}
-            />
+            <div className="w-full">
+              <Fieldset name="Month" style="default" legend="default">
+                <SelectInput
+                  value={userDetails?.birthMonth}
+                  defaultVal={monthOptions?.[0]?.value}
+                  options={monthOptions}
+                  onChange={(e) => {
+                    setUserDetails({
+                      ...userDetails,
+                      birthMonth: e.target.value,
+                    });
+                  }}
+                />
+              </Fieldset>
+            </div>
+            <div className="w-full">
+              <Fieldset name="Day" style="default" legend="default">
+                <SelectInput
+                  value={userDetails?.birthDay}
+                  defaultVal={days31?.[0]?.value}
+                  options={days31}
+                  onChange={(e) => {
+                    setUserDetails({
+                      ...userDetails,
+                      birthDay: e.target.value,
+                    });
+                  }}
+                />
+              </Fieldset>
+            </div>
+            <div className="w-full">
+              <Fieldset name="Year" style="default" legend="default">
+                <SelectInput
+                  value={userDetails?.birthYear}
+                  options={years}
+                  defaultVal={years?.[0]?.value}
+                  onChange={(e) => {
+                    setUserDetails({
+                      ...userDetails,
+                      birthYear: e.target.value,
+                    });
+                  }}
+                />
+              </Fieldset>
+            </div>
           </div>
         </>
       )}
