@@ -5,13 +5,14 @@ export const Avatar = ({
   userName = "",
   userHandle = "",
   profile = "",
+  ...rest
 }) => {
   const profileStyles = {
     profile:
       "absolute w-15 box-content rounded-full border-4 border-neutral-1000 -bottom-10 left-4",
   };
   return (
-    <div className="flex space-x-2">
+    <div className="flex space-x-2" {...rest}>
       <img src={url} className={profileStyles[profile]} />
       <div className="flex space-x-2 w-full items-center">
         <span className="font-semibold">{userName}</span>
