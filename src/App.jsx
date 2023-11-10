@@ -8,6 +8,7 @@ import { Profile } from "./pages/Profile/Profile";
 import { HomeFeedProvider } from "./context/homeFeed/HomeFeedProvider";
 import { CREATE_ACCOUNT, HOME, PROFILE } from "./constants/Constants";
 import { EditProfile } from "./components/Profile/EditProfile";
+import { TweetProvider } from "./context/Tweet/TweetProvider";
 
 function TwitterApp() {
   const { pages } = useContext(CreateAccountContext);
@@ -33,7 +34,9 @@ function App() {
     <div className="h-screen overflow-auto w-screen bg-neutral-1000 font-inter text-neutral-50">
       <CreateAccountProvider>
         <HomeFeedProvider>
-          <TwitterApp />
+          <TweetProvider>
+            <TwitterApp />
+          </TweetProvider>
         </HomeFeedProvider>
       </CreateAccountProvider>
     </div>

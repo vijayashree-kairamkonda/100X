@@ -6,21 +6,41 @@ import { Tabs } from "../../components/shared/Tabs";
 import { HomeHeader } from "./HomeHeader";
 import { HomeFeedContext } from "../../context/homeFeed/HomeFeedContext";
 import { CreatePost } from "../../components/shared/CreatePost";
-import { posts } from "../../constants/Constants";
+import { TweetContext } from "../../context/Tweet/TweetContext";
 
 export const HomeFeed = () => {
-  const { openCreatePost } = useContext(HomeFeedContext);
+  const { openCreatePost, setOpenCreatePost } = useContext(HomeFeedContext);
+  const { tweets, setTweets, tweetText, setTweetText } =
+    useContext(TweetContext);
+
+  const handleTweet = () => {
+    const newTweetObj = {
+      meta: {
+        likes: 0,
+        reposts: 0,
+        comments: 0,
+        views: 0,
+      },
+      post: {
+        text: tweetText,
+        id: tweets?.length + 1,
+      },
+    };
+    setTweets([...tweets, newTweetObj]);
+    setTweetText("");
+    setOpenCreatePost(false);
+  };
 
   return (
     <>
       {openCreatePost ? (
-        <CreatePost />
+        <CreatePost handleTweet={handleTweet} />
       ) : (
         <>
           <HomeHeader />
           <Tabs />
           <div className="overflow-auto pb-20">
-            {posts.map((item, index) => (
+            {tweets?.map((item, index) => (
               <div key={index}>
                 <Post post={item?.post} meta={item?.meta} />
               </div>

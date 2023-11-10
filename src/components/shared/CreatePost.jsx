@@ -2,34 +2,16 @@ import { Button } from "./Button";
 import crossIcon from "../../assets/cross.svg";
 import { Avatar } from "./Avatar";
 import PropTypes from "prop-types";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { HomeFeedContext } from "../../context/homeFeed/HomeFeedContext";
-import { posts } from "../../constants/Constants";
 import { Fieldset } from "./Fieldset";
 import { Input } from "./Input";
+import { TweetContext } from "../../context/Tweet/TweetContext";
 
-export const CreatePost = ({ user }) => {
+export const CreatePost = ({ user, handleTweet }) => {
   const { setOpenCreatePost } = useContext(HomeFeedContext);
-  const [postText, setPostText] = useState("");
+  const { tweetText, setTweetText } = useContext(TweetContext);
 
-  const handlePost = () => {
-    posts.push({
-      meta: {
-        comments: 11,
-        reposts: 20,
-        likes: 10,
-        views: 111,
-      },
-      post: {
-        text: postText,
-        postedBy: {
-          userName: "@vijayshree",
-          userFullName: "vijayashree k",
-        },
-      },
-    });
-    setOpenCreatePost(false);
-  };
   return (
     <>
       <div className="h-screen flex flex-col justify-between">
@@ -42,7 +24,12 @@ export const CreatePost = ({ user }) => {
                 setOpenCreatePost(false);
               }}
             />
-            <Button variant="primary" width="sm" size="md" onClick={handlePost}>
+            <Button
+              variant="primary"
+              width="sm"
+              size="md"
+              onClick={() => handleTweet()}
+            >
               Post
             </Button>
           </div>
@@ -53,10 +40,10 @@ export const CreatePost = ({ user }) => {
             <div className="w-full h-full">
               <Fieldset style="borderNone" legend="default">
                 <Input
-                  value={postText}
+                  value={tweetText}
                   placeholder="What's happening.."
                   onChange={(e) => {
-                    setPostText(e.target.value);
+                    setTweetText(e.target.value);
                   }}
                   type="text"
                   textArea
@@ -80,4 +67,5 @@ CreatePost.propTypes = {
     userFullName: PropTypes.string,
     userImage: PropTypes.url,
   }),
+  handleTweet: PropTypes.func,
 };
