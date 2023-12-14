@@ -50,3 +50,4 @@ export const posts = [
 export const HOME = "home";
 export const PROFILE = "profile";
 export const CREATE_ACCOUNT = "createAccount";
+export const BASE_URL = "https://one00x-react-backend.onrender.com";

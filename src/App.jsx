@@ -9,6 +9,8 @@ import { EditProfile } from "./components/Profile/EditProfile";
 import { TweetProvider } from "./context/Tweet/TweetProvider";
 import { CreatePost } from "./components/shared/CreatePost";
 import { ErrorPage } from "./components/shared/ErrorPage";
+import { AuthProvider } from "./context/authContext/AuthContext";
+import { ProtectedRoute } from "./components/ProtectedRoutes/ProtectedRoutes";
 
 const router = createBrowserRouter([
   {
@@ -23,27 +25,47 @@ const router = createBrowserRouter([
   },
   {
     path: "/home",
-    element: <HomeFeed />,
+    element: (
+      <ProtectedRoute>
+        <HomeFeed />
+      </ProtectedRoute>
+    ),
     errorElement: <ErrorPage />,
   },
   {
     path: "/home/create-post",
-    element: <CreatePost />,
+    element: (
+      <ProtectedRoute>
+        <CreatePost />
+      </ProtectedRoute>
+    ),
     errorElement: <ErrorPage />,
   },
   {
     path: "/profile",
-    element: <Profile />,
+    element: (
+      <ProtectedRoute>
+        <Profile />
+      </ProtectedRoute>
+    ),
     errorElement: <ErrorPage />,
   },
   {
     path: "/profile/create-post",
-    element: <CreatePost />,
+    element: (
+      <ProtectedRoute>
+        <CreatePost />
+      </ProtectedRoute>
+    ),
     errorElement: <ErrorPage />,
   },
   {
     path: "/profile/edit-profile",
-    element: <EditProfile />,
+    element: (
+      <ProtectedRoute>
+        <EditProfile />
+      </ProtectedRoute>
+    ),
     errorElement: <ErrorPage />,
   },
 ]);
@@ -54,7 +76,9 @@ function App() {
       <CreateAccountProvider>
         <HomeFeedProvider>
           <TweetProvider>
-            <RouterProvider router={router} />
+            <AuthProvider>
+              <RouterProvider router={router} />
+            </AuthProvider>
           </TweetProvider>
         </HomeFeedProvider>
       </CreateAccountProvider>
