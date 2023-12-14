@@ -1,9 +1,11 @@
 import { useContext } from "react";
 import crossIcon from "../../assets/cross.svg";
 import { CreateAccountContext } from "../../context/createAccount/CreateAccountContext";
+import { useNavigate } from "react-router-dom";
 
 export const CreateAccountHeader = () => {
-  const { steps, setSteps, setPages } = useContext(CreateAccountContext);
+  const { steps, setSteps } = useContext(CreateAccountContext);
+  const navigate = useNavigate();
 
   const handleNavigateSteps = () => {
     steps === "4"
@@ -12,7 +14,7 @@ export const CreateAccountHeader = () => {
       ? setSteps("2")
       : steps === "2"
       ? setSteps("1")
-      : setPages("");
+      : navigate("/");
   };
   return (
     <div className="flex space-x-6">

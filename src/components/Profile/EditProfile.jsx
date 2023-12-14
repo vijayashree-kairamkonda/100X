@@ -6,18 +6,16 @@ import { Button } from "../shared/Button";
 import PropTypes from "prop-types";
 import { Fieldset } from "../shared/Fieldset";
 import { Input } from "../shared/Input";
-import { PROFILE } from "../../constants/Constants";
-import { useContext } from "react";
-import { CreateAccountContext } from "../../context/createAccount/CreateAccountContext";
+import { useNavigate } from "react-router-dom";
 
 export const EditProfile = ({ user }) => {
-  const { setPages } = useContext(CreateAccountContext);
+  const navigate = useNavigate();
   return (
     <div>
       <div className="px-2">
         <div className="flex justify-between items-center">
           <span className="flex space-x-2">
-            <span onClick={() => setPages(PROFILE)}>
+            <span onClick={() => navigate("/profile")}>
               <img src={arrowLeft} />
             </span>
             <span>Edit profile</span>

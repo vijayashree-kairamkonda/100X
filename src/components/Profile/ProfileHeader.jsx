@@ -3,11 +3,10 @@ import calenderIcon from "../../assets/calendar.svg";
 import { Avatar } from "../shared/Avatar";
 import { Button } from "../shared/Button";
 import PropTypes from "prop-types";
-import { useContext } from "react";
-import { CreateAccountContext } from "../../context/createAccount/CreateAccountContext";
+import { useNavigate } from "react-router-dom";
 
 export const ProfileHeader = ({ user }) => {
-  const { setPages } = useContext(CreateAccountContext);
+  const navigate = useNavigate();
   return (
     <div>
       <header className="relative">
@@ -20,7 +19,7 @@ export const ProfileHeader = ({ user }) => {
             variant="secondary"
             size="md"
             width="sm"
-            onClick={() => setPages("edit-profile")}
+            onClick={() => navigate("/profile/edit-profile")}
           >
             Edit profile
           </Button>

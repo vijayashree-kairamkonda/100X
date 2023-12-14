@@ -2,28 +2,26 @@ import homeOutlinedIcon from "../../assets/home-outline.svg";
 import profileOutlinedIcon from "../../assets/profile.svg";
 import homeFilledIcon from "../../assets/home.svg";
 import profileFilledIcon from "../../assets/profile-filled.svg";
-import { useContext } from "react";
 import PropTypes from "prop-types";
-import { CreateAccountContext } from "../../context/createAccount/CreateAccountContext";
-import { HOME, PROFILE } from "../../constants/Constants";
+import { useNavigate } from "react-router-dom";
 
 export const Navigation = ({ items = {} }) => {
-  const { setPages, pages } = useContext(CreateAccountContext);
+  const navigate = useNavigate();
 
   console.log(items);
   const handleHome = () => {
-    setPages(HOME);
+    navigate("/home");
   };
 
   const handleProfile = () => {
-    setPages(PROFILE);
+    navigate("/profile");
   };
   return (
     <div>
       <footer className="flex items-center w-full justify-center bg-black py-4 mt-2 fixed bottom-0 space-x-16 border-t-2 border-neutral-700">
         <div className="flex space-x-4">
           <span>
-            {pages === "home" ? (
+            {window.location.pathname === "/home" ? (
               <img src={homeFilledIcon} onClick={handleHome} />
             ) : (
               <img src={homeOutlinedIcon} onClick={handleHome} />
@@ -32,7 +30,7 @@ export const Navigation = ({ items = {} }) => {
         </div>
         <div className="flex space-x-4">
           <span>
-            {pages === "profile" ? (
+            {window.location.pathname === "/profile" ? (
               <img src={profileFilledIcon} onClick={handleProfile} />
             ) : (
               <img src={profileOutlinedIcon} onClick={handleProfile} />

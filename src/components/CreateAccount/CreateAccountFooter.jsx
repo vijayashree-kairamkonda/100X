@@ -1,10 +1,11 @@
 import { useContext } from "react";
 import { Button } from "../shared/Button";
 import { CreateAccountContext } from "../../context/createAccount/CreateAccountContext";
-import { HOME } from "../../constants/Constants";
+import { useNavigate } from "react-router-dom";
 
 export const CreateAccountFooter = () => {
-  const { steps, setSteps, setPages } = useContext(CreateAccountContext);
+  const navigate = useNavigate();
+  const { steps, setSteps } = useContext(CreateAccountContext);
   return (
     <div>
       {steps === "2" ? (
@@ -15,7 +16,7 @@ export const CreateAccountFooter = () => {
         <Button
           variant="default"
           size="md"
-          onClick={() => (steps === "3" ? setSteps("4") : setPages(HOME))}
+          onClick={() => (steps === "3" ? setSteps("4") : navigate("/home"))}
         >
           Next
         </Button>

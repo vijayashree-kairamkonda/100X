@@ -3,13 +3,13 @@ import crossIcon from "../../assets/cross.svg";
 import { Avatar } from "./Avatar";
 import PropTypes from "prop-types";
 import { useContext } from "react";
-import { HomeFeedContext } from "../../context/homeFeed/HomeFeedContext";
 import { Fieldset } from "./Fieldset";
 import { Input } from "./Input";
 import { TweetContext } from "../../context/Tweet/TweetContext";
+import { useNavigate } from "react-router-dom";
 
 export const CreatePost = ({ user, handleTweet }) => {
-  const { setOpenCreatePost } = useContext(HomeFeedContext);
+  const navigate = useNavigate();
   const { tweetText, setTweetText } = useContext(TweetContext);
 
   return (
@@ -21,7 +21,9 @@ export const CreatePost = ({ user, handleTweet }) => {
               src={crossIcon}
               className="w-6 h-6"
               onClick={() => {
-                setOpenCreatePost(false);
+                window.location.pathname === "/home/create-post"
+                  ? navigate("/home")
+                  : navigate("/profile");
               }}
             />
             <Button
