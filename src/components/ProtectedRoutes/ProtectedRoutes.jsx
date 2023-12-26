@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 
 export const ProtectedRoute = ({ children }) => {
   const { authToken } = useAuth();
-  return authToken ? children : <Navigate to="/login" />;
+  return authToken ? children : <Navigate to="/" />;
 };
 
 ProtectedRoute.propTypes = {
